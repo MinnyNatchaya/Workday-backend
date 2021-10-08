@@ -74,8 +74,18 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = models => {
     User.hasMany(models.Order, {
-      foreignkey: {
-        name: 'userId',
+      as: 'client',
+      foreignKey: {
+        name: 'clientId',
+        allowNull: false
+      },
+      onDelete: 'RESTRICT',
+      onUpdate: 'RESTRICT'
+    });
+    User.hasMany(models.OrderItem, {
+      as: 'worker',
+      foreignKey: {
+        name: 'workerId',
         allowNull: false
       },
       onDelete: 'RESTRICT',

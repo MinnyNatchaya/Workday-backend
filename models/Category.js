@@ -3,14 +3,12 @@ module.exports = (sequelize, DataTypes) => {
     'Category',
     {
       name: {
-        type: DataTypes.ENUM('การไฟฟ้า', 'การประปา', 'แม่บ้าน', 'กำจัดแมลง'),
-        allowNull: false,
-        defaultValue: 'การไฟฟ้า'
+        type: DataTypes.STRING,
+        allowNull: false
       },
       logoUrl: {
         type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: 'https://res.cloudinary.com/dl7u9oybl/image/upload/v1633073970/l6y8yhzctblrttmt2xpp.png'
+        allowNull: false
       }
     },
     {
@@ -20,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Category.associate = models => {
     Category.hasMany(models.SubCategory, {
-      foreignkey: {
+      foreignKey: {
         name: 'categoryId',
         allowNull: false
       }

@@ -14,21 +14,21 @@ module.exports = (sequelize, DataTypes) => {
 
   SubCategory.associate = models => {
     SubCategory.hasMany(models.OrderItem, {
-      foreignkey: {
+      foreignKey: {
         name: 'subCategoryId',
         allowNull: false
       },
       onDelete: 'RESTRICT',
       onUpdate: 'RESTRICT'
-    }),
-      SubCategory.belongsTo(models.Category, {
-        foreignkey: {
-          name: 'categoryId',
-          allowNull: false
-        },
-        onDelete: 'RESTRICT',
-        onUpdate: 'RESTRICT'
-      });
+    });
+    SubCategory.belongsTo(models.Category, {
+      foreignKey: {
+        name: 'categoryId',
+        allowNull: false
+      },
+      onDelete: 'RESTRICT',
+      onUpdate: 'RESTRICT'
+    });
   };
 
   return SubCategory;
