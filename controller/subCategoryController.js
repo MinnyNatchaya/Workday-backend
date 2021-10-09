@@ -21,10 +21,10 @@ exports.getSubCategoryById = async (req, res, next) => {
 
 exports.createSubCategory = async (req, res, next) => {
   try {
-    const { name, id } = req.body;
+    const { name, categoryId } = req.body;
     const subCategory = await SubCategory.create({
       name,
-      categoryId: id
+      categoryId
     });
     res.status(201).json({ subCategory });
   } catch (err) {
@@ -35,8 +35,8 @@ exports.createSubCategory = async (req, res, next) => {
 exports.updateSubCategory = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { name, category_id } = req.body;
-    const [rows] = await SubCategory.update({ name, category_id }, { where: { id } });
+    const { name, categoryId } = req.body;
+    const [rows] = await SubCategory.update({ name, categoryId }, { where: { id } });
     //[1]
     if (rows === 0) {
       return res.status(400).json({ message: 'Fail to update sub category' });

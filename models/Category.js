@@ -6,6 +6,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
+      caption: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       logoUrl: {
         type: DataTypes.STRING,
         allowNull: false

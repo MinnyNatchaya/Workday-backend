@@ -9,7 +9,7 @@ const app = express(); //dddddd
 const cors = require('cors');
 
 const orderRoute = require('./routes/orderRoute');
-const userRoute = require('./routes/userRoute');
+const profileRoute = require('./routes/profileRoute');
 const categoryRoute = require('./routes/categoryRoute');
 const subCategoryRoute = require('./routes/subCategoryRoute');
 const authRoute = require('./routes/authRoute');
@@ -24,7 +24,7 @@ app.use(express.json());
 // app.use('/create-order', orderRoute);
 // app.use('/service-type-worker', orderRoute);
 // app.use('/profile-orders', userRoute);
-app.use('/profile', userRoute);
+app.use('/profile', profileRoute);
 app.use('/sub-category', subCategoryRoute);
 app.use('/category', categoryRoute);
 app.use('/', authRoute);
