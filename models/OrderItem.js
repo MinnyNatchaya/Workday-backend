@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       as: 'worker',
       foreignKey: {
         name: 'workerId',
-        allowNull: false
+        allowNull: true
       },
       onDelete: 'RESTRICT',
       onUpdate: 'RESTRICT'
@@ -41,6 +41,14 @@ module.exports = (sequelize, DataTypes) => {
     OrderItem.belongsTo(models.SubCategory, {
       foreignKey: {
         name: 'subCategoryId',
+        allowNull: false
+      },
+      onDelete: 'RESTRICT',
+      onUpdate: 'RESTRICT'
+    });
+    OrderItem.belongsTo(models.City, {
+      foreignKey: {
+        name: 'cityId',
         allowNull: false
       },
       onDelete: 'RESTRICT',

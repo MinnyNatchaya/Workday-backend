@@ -1,4 +1,5 @@
 const { SubCategory } = require('../models');
+const { Category } = require('../models');
 
 exports.getAllSubCategorys = async (req, res, next) => {
   try {
@@ -19,6 +20,22 @@ exports.getSubCategoryById = async (req, res, next) => {
   }
 };
 
+exports.getSubCategoryByCategoryId = async (req, res, next) => {
+  try {
+    const { categoryId } = req.params;
+    const subCategory = await SubCategory.findAll({
+      where: { categoryId },
+      include: {
+        model: Category,
+        attributes: ['name', 'logoUrl']
+      }
+    });
+    console.log(JSON.stringify(subCategory, null, 2));
+    res.json({ subCategory });
+  } catch (err) {
+    next(err);
+  }
+};
 exports.createSubCategory = async (req, res, next) => {
   try {
     const { name, categoryId } = req.body;

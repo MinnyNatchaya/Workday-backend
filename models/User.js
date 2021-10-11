@@ -86,7 +86,7 @@ module.exports = (sequelize, DataTypes) => {
       as: 'worker',
       foreignKey: {
         name: 'workerId',
-        allowNull: false
+        allowNull: true
       },
       onDelete: 'RESTRICT',
       onUpdate: 'RESTRICT'

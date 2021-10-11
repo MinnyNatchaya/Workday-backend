@@ -12,6 +12,7 @@ const orderRoute = require('./routes/orderRoute');
 const profileRoute = require('./routes/profileRoute');
 const categoryRoute = require('./routes/categoryRoute');
 const subCategoryRoute = require('./routes/subCategoryRoute');
+const cityRoute = require('./routes/cityRoute');
 const authRoute = require('./routes/authRoute');
 const errorController = require('./controller/errorController');
 //////////////////////////////////////////////////////////
@@ -21,12 +22,13 @@ app.use(cors());
 app.use(express.json());
 
 // use Route
-// app.use('/create-order', orderRoute);
+app.use('/create-order', orderRoute);
 // app.use('/service-type-worker', orderRoute);
 // app.use('/profile-orders', userRoute);
 app.use('/profile', profileRoute);
 app.use('/sub-category', subCategoryRoute);
 app.use('/category', categoryRoute);
+app.use('/city', cityRoute);
 app.use('/', authRoute);
 
 app.use((req, res, next) => {
