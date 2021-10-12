@@ -1,12 +1,11 @@
 const router = require('express').Router();
 const { authenticate } = require('../controller/authController');
-const orderController = require('../controller/orderController');
+const orderItemController = require('../controller/orderItemController');
 
-router.get('/', authenticate, orderController.getAllOrders);
-router.get('/:id', authenticate, orderController.getOrderById);
-router.get('/create-order/:subCategoryId', authenticate, orderController.createOrder);
-// router.post('/', authenticate, orderController.createOrder);
-router.put('/:id', authenticate, orderController.updateOrder);
-router.delete('/:id', authenticate, orderController.deleteOrder);
+router.get('/', authenticate, orderItemController.getAllOrdersItem);
+router.get('/:id', authenticate, orderItemController.getOrderItemById);
+router.post('/create/:subCategoryId', authenticate, orderItemController.createOrderItem);
+router.put('/edit/:id', authenticate, orderItemController.updateOrderItem);
+router.delete('/:id', authenticate, orderItemController.deleteOrderItem);
 
 module.exports = router;

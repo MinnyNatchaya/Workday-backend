@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATEONLY,
         allowNull: false
       },
+      address: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       detail: DataTypes.STRING,
 
       slipUrl: DataTypes.BLOB
@@ -21,14 +25,6 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   OrderItem.associate = models => {
-    OrderItem.belongsTo(models.Order, {
-      foreignKey: {
-        name: 'orderId',
-        allowNull: false
-      },
-      onDelete: 'RESTRICT',
-      onUpdate: 'RESTRICT'
-    });
     OrderItem.belongsTo(models.User, {
       as: 'worker',
       foreignKey: {
@@ -49,6 +45,16 @@ module.exports = (sequelize, DataTypes) => {
     OrderItem.belongsTo(models.City, {
       foreignKey: {
         name: 'cityId',
+        allowNull: false
+      },
+      onDelete: 'RESTRICT',
+      onUpdate: 'RESTRICT'
+    });
+
+    OrderItem.belongsTo(models.User, {
+      as: 'client',
+      foreignKey: {
+        name: 'clientId',
         allowNull: false
       },
       onDelete: 'RESTRICT',

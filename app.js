@@ -22,9 +22,9 @@ app.use(cors());
 app.use(express.json());
 
 // use Route
-app.use('/create-order', orderRoute);
 // app.use('/service-type-worker', orderRoute);
 // app.use('/profile-orders', userRoute);
+app.use('/order', orderRoute);
 app.use('/profile', profileRoute);
 app.use('/sub-category', subCategoryRoute);
 app.use('/category', categoryRoute);

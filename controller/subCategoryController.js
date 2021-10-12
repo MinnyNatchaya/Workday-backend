@@ -30,7 +30,7 @@ exports.getSubCategoryByCategoryId = async (req, res, next) => {
         attributes: ['name', 'logoUrl']
       }
     });
-    console.log(JSON.stringify(subCategory, null, 2));
+    // console.log(JSON.stringify(subCategory, null, 2));
     res.json({ subCategory });
   } catch (err) {
     next(err);

@@ -21,6 +21,7 @@ exports.updateProfile = async (req, res, next) => {
     const { firstName, lastName, username, password, birthDate, gender, address, telephone, imgUrl } = req.body;
     const hasedPassword = await bcrypt.hash(password, 10);
 
+    // console.log(req);
     // console.log(req.file);
     const result = await uploadPromise(req.file.path);
     fs.unlinkSync(req.file.path);
