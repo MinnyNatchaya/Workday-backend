@@ -36,6 +36,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: 0
       },
+      review: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0
+      },
       birthDate: {
         type: DataTypes.STRING,
         allowNull: true,

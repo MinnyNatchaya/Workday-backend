@@ -21,10 +21,12 @@ exports.updateProfile = async (req, res, next) => {
     const { firstName, lastName, username, password, birthDate, gender, address, telephone, imgUrl } = req.body;
     const hasedPassword = await bcrypt.hash(password, 10);
 
-    // console.log(req);
-    // console.log(req.file);
-    const result = await uploadPromise(req.file.path);
-    fs.unlinkSync(req.file.path);
+    let result = undefined;
+
+    if (req.file) {
+      result = await uploadPromise(req.file.path);
+      fs.unlinkSync(req.file.path);
+    }
 
     const [rows] = await User.update(
       {
@@ -36,9 +38,8 @@ exports.updateProfile = async (req, res, next) => {
         gender,
         address,
         telephone,
-        imgUrl: result.secure_url
+        imgUrl: result === undefined ? undefined : result.secure_url
       },
-
       { where: { id, id: req.user.id } }
     );
 
