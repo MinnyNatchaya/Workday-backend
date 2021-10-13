@@ -8,6 +8,10 @@ router.get('/category/:subCategoryId', authenticate, orderWorkerController.getOr
 // router.post('/create/:subCategoryId', authenticate, orderWorkerController.createOrderItem);
 router.put('/acceptwork/:id', authenticate, orderWorkerController.updateOrderItem);
 router.put('/cancle/:id', authenticate, orderWorkerController.updateOrderItemCancle);
+
+router.put('/cancleSlip/:id', authenticate, orderWorkerController.updateCancleSlip);
+router.put('/finishWork/:id', authenticate, orderWorkerController.updateFinishWork);
+
 // router.delete('/:id', authenticate, orderWorkerController.deleteOrderItem);
 // service-type-worker/edit/:1
 module.exports = router;

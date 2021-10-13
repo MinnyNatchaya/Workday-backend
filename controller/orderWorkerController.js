@@ -21,9 +21,10 @@ exports.getAllOrderItem = async (req, res, next) => {
           where: { role: 'Client' },
           model: User,
           as: 'client',
-          attributes: ['username', 'telephone', 'rate']
+          attributes: ['username', 'telephone', 'rate', 'review']
         }
-      ]
+      ],
+      order: [['id', 'DESC']]
     });
 
     res.json({ orders });
@@ -67,7 +68,7 @@ exports.updateOrderItem = async (req, res, next) => {
   try {
     const user = req.user;
     const { id } = req.params;
-    console.log(id);
+    // console.log(id);
     const [rows] = await OrderItem.update(
       {
         workerId: user.id
@@ -86,10 +87,46 @@ exports.updateOrderItem = async (req, res, next) => {
 exports.updateOrderItemCancle = async (req, res, next) => {
   try {
     const { id } = req.params;
-    console.log(id);
+    // console.log(id);
     const [rows] = await OrderItem.update(
       {
         workerId: null
+      },
+      { where: { id, workerId: req.user.id } }
+    );
+    if (rows === 0) {
+      return res.status(400).json({ message: 'Fail to update order' });
+    }
+    res.status(200).json({ message: 'Success update order' });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.updateCancleSlip = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const [rows] = await OrderItem.update(
+      {
+        slipUrl: null
+      },
+      { where: { id, workerId: req.user.id } }
+    );
+    if (rows === 0) {
+      return res.status(400).json({ message: 'Fail to update order' });
+    }
+    res.status(200).json({ message: 'Success update order' });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.updateFinishWork = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const [rows] = await OrderItem.update(
+      {
+        status: true
       },
       { where: { id, workerId: req.user.id } }
     );

@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       detail: DataTypes.STRING,
 
-      slipUrl: DataTypes.BLOB
+      slipUrl: DataTypes.STRING
     },
     {
       underscored: true
