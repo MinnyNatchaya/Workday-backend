@@ -53,9 +53,10 @@ exports.getOrderItemBySubCategoryId = async (req, res, next) => {
           where: { role: 'Client' },
           model: User,
           as: 'client',
-          attributes: ['username', 'rate']
+          attributes: ['username', 'rate', 'review']
         }
-      ]
+      ],
+      order: [['id', 'DESC']]
     });
     // console.log(JSON.stringify(orders, null, 2));
     res.json({ orders });
@@ -72,6 +73,26 @@ exports.updateOrderItem = async (req, res, next) => {
     const [rows] = await OrderItem.update(
       {
         workerId: user.id
+      },
+      { where: { id } }
+    );
+    if (rows === 0) {
+      return res.status(400).json({ message: 'Fail to update order' });
+    }
+    res.status(200).json({ message: 'Success update order' });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.updateOrderItemReview = async (req, res, next) => {
+  try {
+    const user = req.user;
+    const { id } = req.params;
+    // console.log(id);
+    const [rows] = await OrderItem.update(
+      {
+        isWorkerReview: true
       },
       { where: { id } }
     );

@@ -10,6 +10,7 @@ router.post('/create/:subCategoryId', authenticate, orderItemController.createOr
 
 router.put('/edit/:id', authenticate, orderItemController.updateOrderItem);
 router.put('/changeWorker/:id', authenticate, orderItemController.updateOrderItemChanheWorker);
+router.put('/review/:id', authenticate, orderItemController.updateOrderItemReview);
 router.put('/uploadSlip/:id', authenticate, upload.single('slipUrl'), orderItemController.updateOrderItemSlip);
 
 router.delete('/:id', authenticate, orderItemController.deleteOrderItem);

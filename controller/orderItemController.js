@@ -118,6 +118,25 @@ exports.updateOrderItemChanheWorker = async (req, res, next) => {
   }
 };
 
+exports.updateOrderItemReview = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const [rows] = await OrderItem.update(
+      {
+        isClientReview: true
+      },
+      { where: { id, clientId: req.user.id } }
+    );
+    if (rows === 0) {
+      return res.status(400).json({ message: 'Fail to update order' });
+    }
+    res.status(200).json({ message: 'Success update order' });
+  } catch (err) {
+    next(err);
+  }
+};
+
 exports.updateOrderItemSlip = async (req, res, next) => {
   try {
     const { id } = req.params;

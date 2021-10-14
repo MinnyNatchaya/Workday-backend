@@ -5,6 +5,6 @@ const { upload } = require('../middleware/uploadFile');
 
 router.get('/', authenticate, profileController.getProfileById);
 router.put('/edit', authenticate, upload.single('imgUrl'), profileController.updateProfile);
-// router.put('/edit', authenticate, profileController.updateProfile);
+router.put('/review/:id', authenticate, profileController.updateProfileReview);
 
 module.exports = router;

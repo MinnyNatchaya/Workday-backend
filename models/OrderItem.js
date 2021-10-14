@@ -7,6 +7,16 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: false
       },
+      isClientReview: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      },
+      isWorkerReview: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      },
       date: {
         type: DataTypes.DATEONLY,
         allowNull: false
