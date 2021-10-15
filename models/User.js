@@ -63,8 +63,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       imgUrl: {
         type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: 'https://res.cloudinary.com/dl7u9oybl/image/upload/v1633073970/l6y8yhzctblrttmt2xpp.png'
+        allowNull: true
       },
       role: {
         type: DataTypes.ENUM('Client', 'Worker'),
