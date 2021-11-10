@@ -19,7 +19,11 @@ exports.updateProfile = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { firstName, lastName, username, password, birthDate, gender, address, telephone, imgUrl } = req.body;
-    const hasedPassword = await bcrypt.hash(password, 10);
+
+    let hasedPassword;
+    if (password) {
+      hasedPassword = await bcrypt.hash(password, 10);
+    }
 
     let result = undefined;
 
@@ -33,7 +37,7 @@ exports.updateProfile = async (req, res, next) => {
         firstName,
         lastName,
         username,
-        password: hasedPassword,
+        password: password ? hasedPassword : undefined,
         birthDate,
         gender,
         address,
